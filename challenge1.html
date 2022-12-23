@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reto Encriptador</title>
+    <link rel="stylesheet" href="estilos.css">
+
+</head>
+
+<body>
+    <div class="total">
+        <div class="contenedorIngreso">
+            <div class="contenedorCajaTextoIngreso">
+                <input type="text" placeholder="Ingresa el texto  aquí">
+            </div>
+            <div class="condicion">
+                <p> &#9888; Colocar sin mayusculas y sin acentos</p>
+            </div>
+            <div class="contenedorBotonesIngreso">
+                <button id="encriptar" class="btonIngreso"> Encriptar</button>
+                <button id="desencriptar" class="btonIngreso"> Desencriptar</button>
+            </div>
+        </div>
+
+        <div class="resultadosContenedor">
+         <img src="1.png">
+            <div class="contenedorPalabrasEncriptadas">
+                <input type="text" class="texto" disabled>
+            </div>
+            <div class="contenedorBotonCopiar">
+                <button class="btnCopiar">Copiar</button>
+            </div>
+        </div>
+        <footer class="footer">
+            <p> Desarrollado por Christian Garcia</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>
+
+
+<script>
+
+    var capturaTexto = document.querySelector(" .contenedorCajaTextoIngreso input");
+    var botonEncriptar = document.querySelector("#encriptar");
+    var botonDesencriptar = document.querySelector("#desencriptar");
+    var botonCopiar = document.querySelector(".btnCopiar");
+    var capturaTextoaCopiar = document.querySelector(".contenedorPalabrasEncriptadas input");
+    botonEncriptar.onclick = enviarParaEncriptar;
+    botonCopiar.onclick = copiar;
+    botonDesencriptar.onclick = enviarDesencriptar;
+    document.querySelector(".contenedorBotonCopiar button").style.display="none";
+
+
+
+
+    var arregloInicial = [];
+
+
+    function comprobarCadena(entradaCadena) {
+        if (entradaCadena == "" || entradaCadena == " ") {
+            return true;
+
+        }
+
+        return false;
+    }
+
+    function comprobarAcentos() {
+        var hayAcento = false;
+        arregloInicial = capturaTexto.value.split("");
+        for (var t = 0; t < arregloInicial.length; t++) {
+            if (arregloInicial[t] == "á" || arregloInicial[t] == "é" || arregloInicial[t] == "í"
+                || arregloInicial[t] == "ó" || arregloInicial[t] == "ú" || arregloInicial[t] == "ý") {
+                hayAcento = true;
+                break;
+            }
+
+        }
+        return hayAcento;
+
+    }
+
+    function comprobarMayusculas() {
+        arregloInicial = (capturaTexto.value).split("");
+        var hayunaMayuscula = false;
+        for (var a = 0; a < arregloInicial.length; a++) {
+            if (arregloInicial[a] == arregloInicial[a].toUpperCase() && arregloInicial[a] != " ") {
+
+                hayunaMayuscula = true;
+                break;
+            }
+
+        }
+        return hayunaMayuscula;
+
+
+    }
+
+    function enviarParaEncriptar() {
+
+        if (comprobarCadena(capturaTexto.value)) {
+            alert("ingresa una cadena que no sea vacia");
+            capturaTextoaCopiar.value = "";
+            document.querySelector(".resultadosContenedor img").style.display="inline-block";
+            document.querySelector(".contenedorBotonCopiar button").style.display="none";
+        }
+        else if (comprobarMayusculas()) {
+            alert("Hay una mayúscula ,un caracter especial aritmetico o de texto. Intenta con otra cadena");
+            capturaTexto.value = "";
+            document.querySelector(".resultadosContenedor img").style.display="inline-block";
+            document.querySelector(".contenedorBotonCopiar button").style.display="none";
+        }
+        else if (comprobarAcentos()) {
+            alert("ingresa una cadena sin acentos!!");
+            capturaTexto.value = "";
+            document.querySelector(".resultadosContenedor img").style.display="inline-block";
+            ddocument.querySelector(".contenedorBotonCopiar button").style.display="none";
+        }
+        else {
+            let encriptado = encriptar(capturaTexto.value);
+            mostrarEncriptacionDesencriptacion(encriptado);
+            document.querySelector(".resultadosContenedor img").style.display="none";
+            document.querySelector(".contenedorBotonCopiar button").style.display="inline-block";
+         
+        }
+
+
+
+
+    }
+    function enviarDesencriptar() {
+        if (comprobarCadena(capturaTexto.value)) {
+            alert("ingresa una cadena que no sea vacia");
+            capturaTextoaCopiar.value = "";
+            document.querySelector(".resultadosContenedor img").style.display="inline-block";
+            document.querySelector(".contenedorBotonCopiar button").style.display="none";
+        }
+        else if (comprobarMayusculas()) {
+            alert("Hay una mayúscula, un caracter especial aritmetico  o de texto. Intenta con otra cadena");
+
+            capturaTexto.value = "";
+            document.querySelector(".resultadosContenedor img").style.display="inline-block";
+            document.querySelector(".contenedorBotonCopiar button").style.display="none";
+        }
+        else if (comprobarAcentos()) {
+            alert("ingresa una cadena sin acentos!!");
+            capturaTexto.value = "";
+            document.querySelector(".resultadosContenedor img").style.display="inline-block";
+            document.querySelector(".contenedorBotonCopiar button").style.display="none";
+        }
+        else {
+          
+            let mensajeDesencriptado = desEncriptar(capturaTexto.value);
+            console.log(mensajeDesencriptado);
+            mostrarEncriptacionDesencriptacion(mensajeDesencriptado);
+            document.querySelector(".resultadosContenedor img").style.display="none";
+            document.querySelector(".contenedorBotonCopiar button").style.display="inline-block";
+          
+           
+           
+
+        }
+
+
+    }
+    function copiar() {
+  
+       var ff= document.querySelector(".texto");
+       ff.select();
+        var  aa =document.execCommand("copy");
+        capturaTexto.value = capturaTextoaCopiar.value;
+        capturaTextoaCopiar.value = "";
+
+    }
+
+    function encriptar(texto) {
+      
+        var palabraEncriptadaUnida = "";
+        var arregloPalabrasAEncriptar = (capturaTexto.value).split("");
+
+        for (var i = 0; i < arregloPalabrasAEncriptar.length; i++) {
+            if (arregloPalabrasAEncriptar[i] == "e") {
+                palabraEncriptadaUnida = palabraEncriptadaUnida + "enter";
+            } else if (arregloPalabrasAEncriptar[i] == "i") {
+                palabraEncriptadaUnida = palabraEncriptadaUnida + "imea";
+            }
+            else if (arregloPalabrasAEncriptar[i] == "a") {
+                palabraEncriptadaUnida = palabraEncriptadaUnida + "ai";
+            }
+            else if (arregloPalabrasAEncriptar[i] == "o") {
+                palabraEncriptadaUnida = palabraEncriptadaUnida + "ober";
+            }
+            else if (arregloPalabrasAEncriptar[i] == "u") {
+                palabraEncriptadaUnida = palabraEncriptadaUnida + "ufat";
+            }
+            else {
+                palabraEncriptadaUnida = palabraEncriptadaUnida + arregloPalabrasAEncriptar[i];
+            }
+
+
+        }
+
+        return palabraEncriptadaUnida;
+
+    }
+
+    function desEncriptar(texto) {
+        var palabraRempazadaAgrupada = "";
+        palabraRempazadaAgrupada = texto.replace(/enter/g, "e");
+        palabraRempazadaAgrupada = palabraRempazadaAgrupada.replace(/ai/g, "a");
+        palabraRempazadaAgrupada = palabraRempazadaAgrupada.replace(/ober/g, "o");
+        palabraRempazadaAgrupada = palabraRempazadaAgrupada.replace(/imea/g, "i");
+        palabraRempazadaAgrupada = palabraRempazadaAgrupada.replace(/ufat/g, "u");
+        console.log(palabraRempazadaAgrupada);
+
+
+        return palabraRempazadaAgrupada;
+    }
+
+    function mostrarEncriptacionDesencriptacion(encriptado) {
+
+        capturaTextoaCopiar.value = encriptado;
+        capturaTexto.value = "";
+
+    }
+
+
+
+
+
+</script>

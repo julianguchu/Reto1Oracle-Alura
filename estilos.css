@@ -1,0 +1,180 @@
+body{
+    background-color: #cccccc;
+  
+}
+.total{
+    min-width: 1400px;
+    min-height: 500px;
+ text-align: center;
+ 
+}
+.total div {
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+  
+
+  
+
+}
+
+.contenedorIngreso {
+    width: 450px;
+    height: 600px;
+    border-radius: 10px;
+    margin:  20px 20px;
+    position: relative;
+
+ 
+
+}
+.contenedorCajaTextoIngreso{
+box-sizing: border-box;
+width: 100%;
+
+}
+.contenedorCajaTextoIngreso input {
+    box-sizing: border-box;
+    width: 80%;
+    height: 20px;
+    border: 0;
+    margin-top: 10px; 
+    background-color: #cccccc;
+    text-decoration: none;
+    outline: none;
+    
+}
+.contenedorCajaTextoIngreso input:focus {
+   border: 0;
+    outline: none;
+    
+}
+.contenedorCajaTextoIngreso input::placeholder{
+   color: rgb(8, 13, 85);
+   font-size: medium;
+
+
+}
+.condicion{
+    box-sizing: border-box;
+    height: 10px;
+    position: absolute;
+    top:500px;
+    left: 0px;
+   
+}
+.condicion p {
+font-size: smaller;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-style: italic;
+color: rgb(8, 13, 85);
+}
+
+
+
+.contenedorBotonesIngreso {
+    text-align: center;
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    top: 550px;
+    left: 0px;
+    
+   
+
+
+}
+
+.btonIngreso {
+
+    width: 40%;
+    height: 40px;
+    background-color: rgb(8, 13, 85);
+    color: white;
+    margin: 0 10px;
+    border-radius: 10px 10px;
+    box-sizing: border-box;
+}
+
+.btonIngreso:disabled{
+
+
+
+ 
+    background-color:brown;      
+   
+}
+.btonIngreso:hover {
+
+
+    background-color: green;
+ 
+}
+
+
+
+
+.resultadosContenedor {
+    float: right;
+    min-width: 300px;
+    height: 600px;
+   border-radius: 10px 10px;
+    margin-left: 200px;
+    margin-right: 100px;;
+    position: relative;
+    background-color: white;
+    box-sizing: border-box;
+
+}
+.resultadosContenedor image{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    padding-top: 100px;
+    box-sizing: border-box;
+}
+.contenedorPalabrasEncriptadas input{
+   box-sizing: border-box;
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    position: absolute;
+    left: 0px;
+    padding-left:10px;
+    border: 0px;
+}
+
+.contenedorPalabrasEncriptadas input:disabled{
+
+  background-color: white;
+}
+
+.contenedorBotonCopiar {
+
+    position: absolute;
+    box-sizing: border-box;
+    top: 550px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.btnCopiar{
+    box-sizing: border-box;
+    width: 70%;
+    padding:10px 10px;
+    border-radius: 10px 10px;
+    border: 0;
+    font-style: italic;
+    background-color:rgb(138, 137, 137);
+    color: rgb(7, 7, 108);
+    display: none;
+}
+.btnCopiar:hover {
+
+    background-color: green;
+}
+.footer{text-align: center; font-size: medium; font-style: italic; color: black;}
